@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/fonts.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <title>Request a Quote — Dynatec Industrial Solutions</title>
+</head>
+<body>
+    <div class="flex min-h-screen flex-col">
+        <header id="main-header" class="sticky top-0 z-50 w-full bg-white/90 backdrop-blur-md border-b border-slate-200"></header>
+
+        <main class="flex-1">
+            <section class="py-20 lg:py-28 bg-white">
+                <div class="container">
+                    <div class="grid lg:grid-cols-5 gap-12 lg:gap-16">
+                        <div class="lg:col-span-2">
+                            <p class="text-brand font-semibold text-sm tracking-wider uppercase mb-3">Get In Touch</p>
+                            <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl text-steel leading-tight mb-6">Request Your Free Quote</h2>
+                            <p class="text-slate-600 leading-relaxed mb-8">Fill out the form and our engineering team will review your requirements and respond with a tailored proposal within 24 hours.</p>
+
+                            <div class="space-y-5">
+                                <div class="flex gap-3">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin w-5 h-5 text-brand flex-shrink-0 mt-0.5"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                                    <div>
+                                        <p class="font-semibold text-steel text-sm">Our Location</p>
+                                        <p class="text-slate-500 text-sm">Spur Mall, Ruiru, Off Thika Superhighway, Kenya</p>
+                                    </div>
+                                </div>
+                                <div class="flex gap-3">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-phone w-5 h-5 text-brand flex-shrink-0 mt-0.5"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"></path></svg>
+                                    <div>
+                                        <p class="font-semibold text-steel text-sm">Phone</p>
+                                        <a href="tel:+254143293534" class="text-slate-500 text-sm hover:text-brand transition-colors">+254 143 293 534</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="lg:col-span-3">
+                            <form class="bg-slate-50 rounded-2xl p-6 sm:p-8 lg:p-10 border border-slate-200">
+                                <div class="grid sm:grid-cols-2 gap-5">
+                                    <div>
+                                        <label class="block text-sm font-semibold text-steel mb-2">Full Name *</label>
+                                        <input required="" class="w-full rounded-lg border border-slate-300 px-4 py-3 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand transition" placeholder="John Doe" type="text" name="name">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-semibold text-steel mb-2">Company</label>
+                                        <input class="w-full rounded-lg border border-slate-300 px-4 py-3 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand transition" placeholder="Your company name" type="text" name="company">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-semibold text-steel mb-2">Email *</label>
+                                        <input required="" class="w-full rounded-lg border border-slate-300 px-4 py-3 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand transition" placeholder="john@company.com" type="email" name="email">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-semibold text-steel mb-2">Phone Number *</label>
+                                        <input required="" class="w-full rounded-lg border border-slate-300 px-4 py-3 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand transition" placeholder="+254 7XX XXX XXX" type="tel" name="phone">
+                                    </div>
+                                </div>
+                                <div class="mt-5">
+                                    <label class="block text-sm font-semibold text-steel mb-2">Service Interested In *</label>
+                                    <select name="service" required="" class="w-full rounded-lg border border-slate-300 px-4 py-3 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand transition text-slate-600">
+                                        <option value="">Select a service...</option>
+                                        <option value="Mechanical Engineering">Mechanical Engineering</option>
+                                        <option value="Electrical Engineering">Electrical Engineering</option>
+                                        <option value="Industrial Maintenance">Industrial Maintenance</option>
+                                        <option value="Project Management">Project Management</option>
+                                        <option value="Safety Solutions">Safety Solutions</option>
+                                    </select>
+                                </div>
+                                <div class="mt-5">
+                                    <label class="block text-sm font-semibold text-steel mb-2">Project Details</label>
+                                    <textarea name="message" rows="4" class="w-full rounded-lg border border-slate-300 px-4 py-3 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand transition resize-none" placeholder="Tell us about your project requirements..."></textarea>
+                                </div>
+                                <button type="submit" class="mt-5 w-full inline-flex items-center justify-center gap-2 bg-brand hover:brightness-110 text-white font-semibold px-6 py-3.5 rounded-lg transition-all duration-200 shadow-sm">
+                                    Send Quote Request
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer id="main-footer" class="bg-slate-900 text-white pt-16 lg:pt-20 pb-8"></footer>
+    </div>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
