@@ -2085,3 +2085,26 @@
     }
   }
 }
+
+/* Custom Standardized Image Classes */
+@layer utilities {
+  .standard-img, .content-img, .card-img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3 / 2; /* Consistent aspect ratio */
+    object-fit: cover;
+    display: block;
+  }
+
+  .img-wide {
+    aspect-ratio: 16 / 9;
+  }
+
+  .img-square {
+    aspect-ratio: 1 / 1;
+  }
+
+  .img-tall {
+    aspect-ratio: 4 / 5;
+  }
+}

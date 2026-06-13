@@ -1,43 +1,69 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Determine path prefix based on depth
-    const pathDepth = window.location.pathname.split('/').filter(p => p !== '').length;
-    // Handle the case where we might be at root but with a trailing slash or just /index.html
-    // If we are at root, depth is 0 or 1 (for /index.html)
-    // If we are in services/, depth is 2 (for /services/mechanical-engineering.html)
-    const isSubPage = window.location.pathname.includes('/services/');
-    const prefix = isSubPage ? '../' : '';
+    /**
+     * Determines the relative path to the root directory.
+     * Works by counting how many levels deep the current page is.
+     */
+    const getRootPrefix = () => {
+        // Get path relative to the domain root
+        const path = window.location.pathname;
 
-    // Component Loading
-    const loadComponent = async (id, path) => {
+        // If we are at root or just index.html, prefix is empty
+        // We assume files are either in root or in 1-level deep subdirectories
+        const isSubPage = path.includes('/services/');
+        return isSubPage ? '../' : '';
+    };
+
+    const rootPrefix = getRootPrefix();
+
+    /**
+     * Loads an HTML component and injects it into the DOM.
+     * Programmatically adjusts relative paths for sub-pages.
+     */
+    const loadComponent = async (id, componentPath) => {
         const element = document.getElementById(id);
         if (!element) return;
 
         try {
-            const response = await fetch(path);
-            if (response.ok) {
-                let html = await response.text();
+            const response = await fetch(rootPrefix + componentPath);
+            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
 
-                // Adjust paths in the loaded HTML for sub-pages
-                if (isSubPage) {
-                    html = html.replace(/href="(?!http|https|#|\/)/g, 'href="../');
-                    html = html.replace(/src="(?!http|https|\/)/g, 'src="../');
-                    // Special case for absolute root paths starting with /
-                    html = html.replace(/href="\//g, 'href="../');
-                    html = html.replace(/src="\//g, 'src="../');
-                } else {
-                    // Just remove the leading / for root pages to keep them relative
-                    html = html.replace(/href="\//g, 'href="');
-                    html = html.replace(/src="\//g, 'src="');
-                }
+            const html = await response.text();
 
-                element.innerHTML = html;
+            // Use a temporary container to parse and manipulate the HTML
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = html;
 
-                if (id === 'main-header') {
-                    initMenuToggle();
-                }
+            // Only adjust paths if we are in a sub-directory
+            if (rootPrefix) {
+                // Adjust links
+                tempDiv.querySelectorAll('a[href]').forEach(link => {
+                    const href = link.getAttribute('href');
+                    // Only prefix relative links that don't start with http, /, #, mailto, or tel
+                    if (href && !/^(?:[a-z]+:|\/\/|#|\/)/i.test(href)) {
+                        link.setAttribute('href', rootPrefix + href);
+                    }
+                });
+
+                // Adjust images
+                tempDiv.querySelectorAll('img[src]').forEach(img => {
+                    const src = img.getAttribute('src');
+                    if (src && !/^(?:[a-z]+:|\/\/|\/)/i.test(src)) {
+                        img.setAttribute('src', rootPrefix + src);
+                    }
+                });
+            }
+
+            // Move children from temp container to the actual element
+            while (tempDiv.firstChild) {
+                element.appendChild(tempDiv.firstChild);
+            }
+
+            // Initialize specific component logic
+            if (id === 'main-header') {
+                initMenuToggle();
             }
         } catch (error) {
-            console.error(`Error loading component from ${path}:`, error);
+            console.error(`Error loading component from ${componentPath}:`, error);
         }
     };
 
@@ -52,9 +78,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // Load components using relative paths
-    loadComponent('main-header', prefix + 'assets/components/header.html');
-    loadComponent('main-footer', prefix + 'assets/components/footer.html');
+    // Load components
+    loadComponent('main-header', 'assets/components/header.html');
+    loadComponent('main-footer', 'assets/components/footer.html');
 
-    initMenuToggle();
+    // Also handle WhatsApp button if it exists as a separate placeholder or load it in footer
+    // Currently, it's likely part of one of the components or in the main page.
 });
